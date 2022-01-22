@@ -1,17 +1,14 @@
 import { createContext, useState } from 'react'
+import { useContext } from 'react/cjs/react.development';
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null
     );
-    // {
-    //     id: 1,
-    //     username: 'yusuft',
-    //     bio: 'Frontend developer'
-    // }
     const values = { user, setUser }
     return <UserContext.Provider value={values
     }> {children} </UserContext.Provider>
 }
-export default UserContext;
+
+export const useUser = () => useContext(UserContext)

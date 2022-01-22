@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react"
+import { useContext } from "react/cjs/react.development";
 
 const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
@@ -7,11 +8,13 @@ export const ThemeProvider = ({ children }) => {
     useEffect(() => {
         console.log('theme :>> ', theme);
         localStorage.setItem('theme', theme)
-    }, [theme])
+    }, [theme]);
+
     const values = {
         theme,
         setTheme
-    }
+    };
+
     return <ThemeContext.Provider value={values}> {children} </ThemeContext.Provider>
 }
-export default ThemeContext
+export const useTheme = () => useContext(ThemeContext)
